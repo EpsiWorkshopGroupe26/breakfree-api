@@ -2,7 +2,7 @@ import GeneralInformation from '#models/general_information'
 import User from '#models/user'
 
 export default class GeneralInformationService {
-  static async getById(id: number, authUser: User): Promise<GeneralInformation> {
+  static async getById(id: number, authUser: User) {
     const info = await authUser.related('generalInformation').query().where('id', id).first()
     if (!info) {
       throw new Error('GeneralInformation not found')
