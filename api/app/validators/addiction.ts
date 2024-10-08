@@ -1,20 +1,5 @@
 import vine from '@vinejs/vine'
 
-/**
- * Validator for addiction creation.
- *
- * This validator ensures that the following fields are validated:
- * - `type`: A string with a maximum length of 200.
- * - `frequency`: A string with a maximum length of 255.
- * - `duration`: A string with a maximum length of 100.
- * - `consequences`: A string with a maximum length of 255.
- * - `weaning`: A string with a maximum length of 255.
- * - `userId`: A number that exists in the `users` table.
- *
- * @constant
- * @type {Validator}
- */
-
 export const createAddictionValidator = vine.object({
   type: vine.string().maxLength(200),
   frequency: vine.string().maxLength(255),
