@@ -8,6 +8,9 @@ export default class Addiction extends BaseModel {
   declare id: number
 
   @column()
+  declare userId: number
+
+  @column()
   declare type: string
 
   @column()

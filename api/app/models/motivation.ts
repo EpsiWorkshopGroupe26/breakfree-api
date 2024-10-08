@@ -8,6 +8,9 @@ export default class Motivation extends BaseModel {
   declare id: number
 
   @column()
+  declare userId: number
+
+  @column()
   declare states: string
 
   @column()
@@ -23,5 +26,5 @@ export default class Motivation extends BaseModel {
   declare updatedAt: DateTime
 
   @belongsTo(() => User)
-  declare user: BelongsTo<typeof User>
+  declare users: BelongsTo<typeof User>
 }

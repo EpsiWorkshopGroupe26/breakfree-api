@@ -7,6 +7,10 @@ export default class Emotion extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
+  @column()
+  declare userId: number
+
+  @column()
   declare states: string
 
   @column.dateTime({ autoCreate: true })
@@ -16,5 +20,5 @@ export default class Emotion extends BaseModel {
   declare updatedAt: DateTime
 
   @belongsTo(() => User)
-  declare user: BelongsTo<typeof User>
+  declare users: BelongsTo<typeof User>
 }

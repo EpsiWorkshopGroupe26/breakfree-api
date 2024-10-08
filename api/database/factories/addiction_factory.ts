@@ -7,7 +7,15 @@ export const AddictionFactory = factory
     return {
       type: faker.helpers.arrayElement(['Alcohol', 'Smoking', 'Drugs', 'Gambling']),
       frequency: faker.helpers.arrayElement(['Daily', 'Weekly', 'Monthly']),
-      duration: faker.datatype.string(10),
+      duration: faker.helpers.arrayElement([
+        '6 days',
+        '20 days',
+        '1 month',
+        '6 months',
+        '1 year',
+        '3 years',
+        '5 years',
+      ]),
       consequences: faker.lorem.sentence(),
       weaning: faker.lorem.sentence(),
     }

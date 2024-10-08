@@ -16,7 +16,11 @@ export default class AuthController {
   async register({ request, response }: HttpContext): Promise<void> {
     const payload = await request.validateUsing(registerValidator)
     const user = await User.create(payload)
-    return response.created(user)
+    const token = await User.accessTokens.create(user, ['*'], {
+      name: user.id.toString(), // Token name is the user ID
+      //expiresIn: env.get('JWT_EXPIRES_IN'),
+    })
+    return response.created({ user, token })
   }
 
   async login({ request, response }: HttpContext): Promise<void> {

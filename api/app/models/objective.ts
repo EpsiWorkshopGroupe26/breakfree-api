@@ -8,6 +8,9 @@ export default class Objective extends BaseModel {
   declare id: number
 
   @column()
+  declare addictionId: number
+
+  @column()
   declare description: string
 
   @column()
@@ -20,5 +23,5 @@ export default class Objective extends BaseModel {
   declare updatedAt: DateTime
 
   @belongsTo(() => Addiction)
-  declare addiction: BelongsTo<typeof Addiction>
+  declare addictions: BelongsTo<typeof Addiction>
 }

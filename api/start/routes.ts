@@ -1,7 +1,3 @@
-import { Addiction } from '#models/addiction';
-import { MentalHealth } from '#models/mental_health';
-import { GeneralInformation } from '#models/general_information';
-import { Emotion } from '#models/emotion';
 /*
 |--------------------------------------------------------------------------
 | Routes file
@@ -13,11 +9,6 @@ import { Emotion } from '#models/emotion';
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
-/**
- * Dynamically imports the EmployeesController module.
- *
- * @returns {Promise<Module>} A promise that resolves to the EmployeesController module.
- */
 
 const AuthController = () => import('#controllers/auth_controller')
 const EmotionsController = () => import('#controllers/emotions_controller')
@@ -26,7 +17,6 @@ const MentalHealthsController = () => import('#controllers/mental_healths_contro
 const MotivationsController = () => import('#controllers/motivations_controller')
 const ObjectivesController = () => import('#controllers/objectives_controller')
 const AddictionController = () => import('#controllers/addictions_controller')
-
 
 router
   .group(() => {
