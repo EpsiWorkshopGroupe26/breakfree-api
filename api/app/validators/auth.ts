@@ -25,6 +25,15 @@ export const registerValidator = vine.compile(
   })
 )
 
+/**
+ * Validator for the login endpoint.
+ *
+ * This validator ensures that the `email` field is a valid email address and is trimmed of whitespace.
+ * It also ensures that the `password` field is a string with a minimum length of 12 characters and a maximum length of 32 characters.
+ *
+ * @constant
+ * @type {Validator}
+ */
 export const loginValidator = vine.compile(
   vine.object({
     email: vine.string().email().trim(),

@@ -16,6 +16,25 @@ const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   passwordColumnName: 'password',
 })
 
+/**
+ * Represents a User model that extends BaseModel and AuthFinder.
+ *
+ * @class User
+ *
+ * @property {number} id - The primary key of the user.
+ * @property {string} email - The email address of the user.
+ * @property {string} password - The password of the user, not serialized.
+ * @property {HasOne<typeof GeneralInformation>} generalInformation - The general information associated with the user.
+ * @property {HasMany<typeof Addiction>} addictions - The addictions associated with the user.
+ * @property {HasMany<typeof Emotion>} emotions - The emotions associated with the user.
+ * @property {HasMany<typeof MentalHealth>} mentalHealths - The mental health records associated with the user.
+ * @property {HasMany<typeof Motivation>} motivations - The motivations associated with the user.
+ * @property {DateTime} createdAt - The date and time when the user was created.
+ * @property {DateTime | null} updatedAt - The date and time when the user was last updated.
+ *
+ * @static
+ * @property {DbAccessTokensProvider} accessTokens - The access tokens provider for the User model.
+ */
 export default class User extends compose(BaseModel, AuthFinder) {
   @column({ isPrimary: true })
   declare id: number

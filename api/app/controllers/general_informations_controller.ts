@@ -63,6 +63,19 @@ export default class GeneralInformationsController {
     return response.ok(userInfo)
   }
 
+  /**
+   * Deletes user information based on the provided ID.
+   *
+   * @param {HttpContext} context - The HTTP context containing authentication, parameters, and response objects.
+   * @returns {Promise<void>} - A promise that resolves when the operation is complete.
+   *
+   * @throws {Error} - Throws an error if the user is not authenticated.
+   *
+   * @remarks
+   * This method uses the `GeneralInformationService` to delete the user information.
+   * If the information is not found, it responds with a 404 status and a message indicating that the user information was not found.
+   * If the deletion is successful, it responds with a 200 status and a message indicating that the user information was deleted successfully.
+   */
   async deleteUserInfo({ auth, params, response }: HttpContext): Promise<void> {
     const authUser = auth.getUserOrFail()
     const deleted = await GeneralInformationService.delete(params.id, authUser)

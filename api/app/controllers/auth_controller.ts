@@ -3,6 +3,12 @@ import User from '#models/user'
 import { loginValidator, registerValidator } from '#validators/auth'
 
 export default class AuthController {
+  /**
+   * Registers a new user.
+   *
+   * @param {HttpContext} context - The HTTP context containing the request and response objects.
+   * @returns {Promise<void>} - A promise that resolves when the user is registered.
+   */
   async register({ request, response }: HttpContext): Promise<void> {
     const payload = await request.validateUsing(registerValidator)
     const user = await User.create(payload)
@@ -13,6 +19,12 @@ export default class AuthController {
     return response.created({ user, token })
   }
 
+  /**
+   * Logs in an existing user.
+   *
+   * @param {HttpContext} context - The HTTP context containing the request and response objects.
+   * @returns {Promise<void>} - A promise that resolves when the user is logged in.
+   */
   async login({ request, response }: HttpContext): Promise<void> {
     const { email, password } = await request.validateUsing(loginValidator)
     const user = await User.verifyCredentials(email, password)
@@ -32,6 +44,12 @@ export default class AuthController {
     })
   }
 
+  /**
+   * Logs out the authenticated user.
+   *
+   * @param {HttpContext} context - The HTTP context containing the auth and response objects.
+   * @returns {Promise<void>} - A promise that resolves when the user is logged out.
+   */
   async logout({ auth, response }: HttpContext): Promise<void> {
     if (!auth.isAuthenticated) {
       return response.unauthorized({ message: 'Not authenticated' })
@@ -43,6 +61,12 @@ export default class AuthController {
     return response.noContent()
   }
 
+  /**
+   * Deletes the authenticated user's account.
+   *
+   * @param {HttpContext} context - The HTTP context containing the auth and response objects.
+   * @returns {Promise<void>} - A promise that resolves when the user's account is deleted.
+   */
   async delete({ auth, response }: HttpContext): Promise<void> {
     if (!auth.isAuthenticated) {
       return response.unauthorized({ message: 'Not authenticated' })
