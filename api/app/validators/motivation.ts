@@ -1,24 +1,17 @@
 import vine from '@vinejs/vine'
 
-export const createMotivationValidator = vine.object({
-  userId: vine.number().exists(async (query, field) => {
-    const user = await query.from('users').where('id', field).first()
-    return !!user
-  }),
-  states: vine.string().maxLength(255),
-  support: vine.boolean(),
-  consult: vine.boolean(),
-})
+export const createMotivationValidator = vine.compile(
+  vine.object({
+    states: vine.string().maxLength(255),
+    support: vine.boolean(),
+    consult: vine.boolean(),
+  })
+)
 
-export const updateMotivationValidator = vine.object({
-  userId: vine
-    .number()
-    .exists(async (query, field) => {
-      const user = await query.from('users').where('id', field).first()
-      return !!user
-    })
-    .optional(),
-  states: vine.string().maxLength(255).optional(),
-  support: vine.boolean().optional(),
-  consult: vine.boolean().optional(),
-})
+export const updateMotivationValidator = vine.compile(
+  vine.object({
+    states: vine.string().maxLength(255).optional(),
+    support: vine.boolean().optional(),
+    consult: vine.boolean().optional(),
+  })
+)

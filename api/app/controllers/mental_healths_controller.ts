@@ -44,6 +44,6 @@ export default class MentalHealthsController {
     if (!deleted) {
       return response.notFound({ message: 'Mental health record not found' })
     }
-    return response.noContent()
+    return response.ok({ message: 'Mental health record deleted successfully' })
   }
 }

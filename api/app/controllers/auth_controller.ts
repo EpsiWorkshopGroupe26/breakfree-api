@@ -42,4 +42,13 @@ export default class AuthController {
     await User.accessTokens.delete(user, token.identifier)
     return response.noContent()
   }
+
+  async delete({ auth, response }: HttpContext): Promise<void> {
+    if (!auth.isAuthenticated) {
+      return response.unauthorized({ message: 'Not authenticated' })
+    }
+    const user = auth.getUserOrFail()
+    await user.delete()
+    return response.ok({ message: 'User deleted successfully' })
+  }
 }

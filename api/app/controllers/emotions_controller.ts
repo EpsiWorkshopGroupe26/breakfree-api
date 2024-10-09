@@ -44,6 +44,6 @@ export default class EmotionsController {
     if (!deleted) {
       return response.notFound({ message: 'Emotion not found' })
     }
-    return response.noContent()
+    return response.ok({ message: 'Emotion deleted successfully' })
   }
 }

@@ -27,6 +27,7 @@ router
             router.post('/register', [AuthController, 'register'])
             router.post('/login', [AuthController, 'login'])
             router.post('/logout', [AuthController, 'logout']).use(middleware.auth())
+            router.delete('/user/delete', [AuthController, 'delete']).use(middleware.auth())
           })
           .prefix('auth') // Authentification routes --
         router
@@ -51,10 +52,9 @@ router
         router
           .group(() => {
             router.get('/shows', [EmotionsController, 'getEmotions'])
-            router.get('/shows/bar/:id', [EmotionsController, 'getEmotion'])
             router.get('/show/:id', [EmotionsController, 'getEmotion'])
             router.post('/create', [EmotionsController, 'createEmotion'])
-            router.put('/update/:barId/:id', [EmotionsController, 'updateEmotion'])
+            router.put('/update/:id', [EmotionsController, 'updateEmotion'])
             router.delete('/delete/:id', [EmotionsController, 'deleteEmotion'])
           })
           .use(middleware.auth())
@@ -63,7 +63,7 @@ router
           .group(() => {
             router.get('/shows', [MentalHealthsController, 'getMentalHealths'])
             router.get('/show/:id', [MentalHealthsController, 'getMentalHealth'])
-            router.post('/create/:id', [MentalHealthsController, 'createMentalHealth'])
+            router.post('/create', [MentalHealthsController, 'createMentalHealth'])
             router.put('/update/:id', [MentalHealthsController, 'updateMentalHealth'])
             router.delete('/delete/:id', [MentalHealthsController, 'deleteMentalHealth'])
           })
@@ -73,7 +73,7 @@ router
           .group(() => {
             router.get('/shows', [MotivationsController, 'getMotivations'])
             router.get('/show/:id', [MotivationsController, 'getMotivation'])
-            router.post('/create/:id', [MotivationsController, 'createMotivation'])
+            router.post('/create', [MotivationsController, 'createMotivation'])
             router.put('/update/:id', [MotivationsController, 'updateMotivation'])
             router.delete('/delete/:id', [MotivationsController, 'deleteMotivation'])
           })
@@ -82,10 +82,16 @@ router
         router
           .group(() => {
             router.get('/shows', [ObjectivesController, 'getObjectives'])
-            router.get('/show/:id', [ObjectivesController, 'getObjective'])
+            router.get('/show/:id/addiction/:idAddiction', [ObjectivesController, 'getObjective'])
             router.post('/create/:id', [ObjectivesController, 'createObjective'])
-            router.put('/update/:id', [ObjectivesController, 'updateObjective'])
-            router.delete('/delete/:id', [ObjectivesController, 'deleteObjective'])
+            router.put('/update/:id/addiction/:idAddiction', [
+              ObjectivesController,
+              'updateObjective',
+            ])
+            router.delete('/delete/:id/addiction/:idAddiction', [
+              ObjectivesController,
+              'deleteObjective',
+            ])
           })
           .use(middleware.auth())
           .prefix('objectives') // Objective routes --

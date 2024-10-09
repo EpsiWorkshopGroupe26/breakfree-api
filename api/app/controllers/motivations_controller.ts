@@ -44,6 +44,6 @@ export default class MotivationsController {
     if (!deleted) {
       return response.notFound({ message: 'Motivation not found' })
     }
-    return response.noContent()
+    return response.ok({ message: 'Motivation deleted successfully' })
   }
 }
