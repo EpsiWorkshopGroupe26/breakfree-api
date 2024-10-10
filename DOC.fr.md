@@ -1,5 +1,7 @@
 # BreakFree API Documentation
 
+[EN](DOC.md) | [FR](DOC.fr.md)
+
 ## Introduction
 
 BreakFree API est une API RESTful qui permet de gérer divers aspects de la santé mentale et physique des utilisateurs, tels que leurs addictions, émotions, objectifs, informations générales, et motivations. L'API utilise des jetons d'authentification (Bearer Tokens) pour sécuriser l'accès aux routes et garantir que chaque utilisateur interagit uniquement avec ses propres données.
